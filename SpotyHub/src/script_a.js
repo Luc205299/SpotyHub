@@ -11,6 +11,9 @@ if (!code) {
     populateUI(profile);
 }
 
+function pageAlbum(){
+    window.open('pageAlbum.html');
+}
 
 
 async function redirectToAuthCodeFlow(clientId) {
@@ -99,5 +102,4 @@ async function generateCodeChallenge(codeVerifier) {
         .replace(/\//g, '_')
         .replace(/=+$/, '');
 }
-
 
