@@ -7,12 +7,9 @@ if (!code) {
 } else {
     const accessToken = sessionStorage.getItem('accessToken');
     const profile = await fetchProfile(accessToken);
- 
+
     populateUI(profile);
 }
-
-
-
 
 async function redirectToAuthCodeFlow(clientId) {
     const verifier = generateCodeVerifier(128);
@@ -53,14 +50,14 @@ async function getAccessToken(clientId, code) {
 
 async function fetchProfile(token) {
     const result = await fetch("https://api.spotify.com/v1/me", {
-        method: "GET", headers: { Authorization: `Bearer ${token}` }
+        method: "GET", 
+        headers: { 
+            Authorization: `Bearer ${token}` 
+        }
     });
 
     return await result.json();
 }
-
-
-
 
 function populateUI(profile) {
     document.getElementById("displayName").innerText = profile.display_name;
@@ -71,16 +68,13 @@ function populateUI(profile) {
         document.getElementById("imgUrl").innerText = profile.images[0].url;
     }
     document.getElementById("id").innerText = profile.id;
-	document.getElementById("country").innerText = profile.country;
+    document.getElementById("country").innerText = profile.country;
     document.getElementById("email").innerText = profile.email;
     document.getElementById("uri").innerText = profile.uri;
     document.getElementById("uri").setAttribute("href", profile.external_urls.spotify);
     document.getElementById("url").innerText = profile.href;
     document.getElementById("url").setAttribute("href", profile.href);
 }
-
-
-
 
 function generateCodeVerifier(length) {
     let text = '';
@@ -101,3 +95,18 @@ async function generateCodeChallenge(codeVerifier) {
         .replace(/=+$/, '');
 }
 
+function AfficherText() {
+    var text = document.getElementById("idAlbum").value;
+    console.log('le texte est : ' + text);
+}
+
+async function fetchPlaylist(id_playlist, token) {
+    const result = await fetch(`https://api.spotify.com/v1//playlists/${id_playlist}`, {
+        method: "GET", 
+        headers: { 
+            Authorization: `Bearer ${token}` 
+        }
+    });
+
+    return await result.json();
+}

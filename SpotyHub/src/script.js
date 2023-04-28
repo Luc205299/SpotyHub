@@ -1,15 +1,3 @@
-/*let myHeading = document.querySelector('h1');
-myHeading.textContent = 'Bonjour, monde !';*/
-/*let iceCream = 'chocolat';
-if (iceCream === 'chocolat') {
-  alert("J'adore la bite !");
-} else {
-  alert("Ooooh, mais j'aurais préféré au chocolat.");
-}/*
-document.querySelector('html').addEventListener('click', function() {
-    alert("MMMMh, encore j aime ça bordel !!");
-});*/
-
 let myImage = document.querySelector('#toto');
 
 myImage.addEventListener('click', function() {
