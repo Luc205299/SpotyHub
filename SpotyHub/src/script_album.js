@@ -1,11 +1,11 @@
 const clientId = "c19f863da99a4b12ae8a166ebba42181";
 const params = new URLSearchParams(window.location.search);
-const code = params.get("code");
+const code = sessionStorage.getItem('code');
 
 if (!code) {
     redirectToAuthCodeFlow(clientId);
 } else {
-    const accessToken = await getAccessToken(clientId, code);
+    const accessToken = sessionStorage.getItem('accessToken');
     const profile = await fetchProfile(accessToken);
  
     populateUI(profile);

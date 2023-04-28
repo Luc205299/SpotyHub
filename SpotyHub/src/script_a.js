@@ -5,8 +5,11 @@ const code = params.get("code");
 if (!code) {
     redirectToAuthCodeFlow(clientId);
 } else {
+    sessionStorage.setItem('code', code);
     const accessToken = await getAccessToken(clientId, code);
     const profile = await fetchProfile(accessToken);
+    // Stocker une variable de session
+    sessionStorage.setItem('accessToken', accessToken);
  
     populateUI(profile);
 }
