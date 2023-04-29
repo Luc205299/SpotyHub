@@ -6,6 +6,7 @@ if (!code) {
     redirectToAuthCodeFlow(clientId);
 } else {
     const accessToken = await getAccessToken(clientId, code);
+    localStorage.setItem('accessToken', accessToken);
     const profile = await fetchProfile(accessToken);
     const top = await fetchTop(accessToken);
     console.log(profile);
