@@ -1,15 +1,19 @@
 const clientId = "c19f863da99a4b12ae8a166ebba42181";
 const params = new URLSearchParams(window.location.search);
-const code = sessionStorage.getItem('code');
+var code = sessionStorage.getItem('code');
 
-if (!code) {
-    redirectToAuthCodeFlow(clientId);
-} else {
-    const accessToken = sessionStorage.getItem('accessToken');
-    const profile = await fetchProfile(accessToken);
+const setup = async () => {
+    if (!code) {
+        redirectToAuthCodeFlow(clientId);
+    } else {
+        const accessToken = sessionStorage.getItem('accessToken');
+        const profile = await fetchProfile(accessToken);
+    
+        populateUI(profile);
+    }
+};
 
-    populateUI(profile);
-}
+setup();
 
 async function redirectToAuthCodeFlow(clientId) {
     const verifier = generateCodeVerifier(128);
@@ -20,7 +24,7 @@ async function redirectToAuthCodeFlow(clientId) {
     const params = new URLSearchParams();
     params.append("client_id", clientId);
     params.append("response_type", "code");
-    params.append("redirect_uri", "http://localhost:5173/pageAlbum.html");
+    params.append("redirect_uri", "http://localhost:5173/pageAuth.html");
     params.append("scope", "user-read-private user-read-email");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
@@ -35,7 +39,7 @@ async function getAccessToken(clientId, code) {
     params.append("client_id", clientId);
     params.append("grant_type", "authorization_code");
     params.append("code", code);
-    params.append("redirect_uri", "http://localhost:5173/pageAlbum.html");
+    params.append("redirect_uri", "http://localhost:5173/pageAuth.html");
     params.append("code_verifier", verifier);
 
     const result = await fetch("https://accounts.spotify.com/api/token", {
