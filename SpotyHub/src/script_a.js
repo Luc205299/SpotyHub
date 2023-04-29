@@ -63,7 +63,7 @@ async function fetchProfile(token) {
 }
 
 async function fetchTop(token) {
-    const result = await fetch("https://api.spotify.com/v1/me/shows?offset=1&limit=1", {
+    const result = await fetch("https://api.spotify.com/v1/me/top/artists?limit=1&offset=0", {
         method: "GET", headers: { Authorization: `Bearer ${token}` }
     });
 
@@ -92,7 +92,11 @@ function populateUI(profile) {
 
 
 function populateIU(top) {
-    document.getElementById("name").innerText = top.name;
+    if (top.items.length > 0) {
+        document.getElementById("name").innerText = top.items[0].name;
+    } else {
+        document.getElementById("name").innerText = "No top artist found";
+    }
 }
 
 
