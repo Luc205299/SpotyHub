@@ -9,13 +9,15 @@ const setup = async () => {
     if (!code) {
         redirectToAuthCodeFlow(clientId);
     } else {
-        sessionStorage.setItem('code', code);
+        localStorage.setItem('code', code);
         const accessToken = await getAccessToken(clientId, code);
         const profile = await fetchProfile(accessToken);
         // Stocker une variable de session
-        sessionStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('accessToken', accessToken);
      
-        populateUI(profile);
+        console.log(profile);
+
+    populateUI(profile);
     }
 };
 
@@ -67,8 +69,6 @@ async function fetchProfile(token) {
 
     return await result.json();
 }
-
-
 
 
 function populateUI(profile) {

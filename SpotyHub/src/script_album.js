@@ -1,12 +1,12 @@
 const clientId = "c19f863da99a4b12ae8a166ebba42181";
 const params = new URLSearchParams(window.location.search);
-const code = sessionStorage.getItem('code');
+const code = localStorage.getItem('code');
 
 const setup = async () => {
     if (!code) {
         redirectToAuthCodeFlow(clientId);
     } else {
-        const accessToken = sessionStorage.getItem('accessToken');
+        const accessToken = localStorage.getItem('accessToken');
         const profile = await fetchProfile(accessToken);
     
         populateUI(profile);
@@ -69,15 +69,8 @@ function populateUI(profile) {
         const profileImage = new Image(200, 200);
         profileImage.src = profile.images[0].url;
         document.getElementById("avatar").appendChild(profileImage);
-        document.getElementById("imgUrl").innerText = profile.images[0].url;
     }
     document.getElementById("id").innerText = profile.id;
-    document.getElementById("country").innerText = profile.country;
-    document.getElementById("email").innerText = profile.email;
-    document.getElementById("uri").innerText = profile.uri;
-    document.getElementById("uri").setAttribute("href", profile.external_urls.spotify);
-    document.getElementById("url").innerText = profile.href;
-    document.getElementById("url").setAttribute("href", profile.href);
 }
 
 function generateCodeVerifier(length) {
@@ -105,7 +98,7 @@ function AfficherText() {
 }
 
 async function fetchPlaylist() {
-    const accessToken = sessionStorage.getItem('accessToken');
+    const accessToken = localStorage.getItem('accessToken');
     var id_playlist = document.getElementById("idAlbum").value;
     const result = await fetch(`https://api.spotify.com/v1/playlists/${id_playlist}`, {
         method: "GET", 
