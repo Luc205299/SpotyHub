@@ -1,6 +1,6 @@
 const clientId = "c19f863da99a4b12ae8a166ebba42181";
 const params = new URLSearchParams(window.location.search);
-var code = sessionStorage.getItem('code');
+const code = sessionStorage.getItem('code');
 
 const setup = async () => {
     if (!code) {
@@ -104,13 +104,40 @@ function AfficherText() {
     console.log('le texte est : ' + text);
 }
 
-async function fetchPlaylist(id_playlist, token) {
-    const result = await fetch(`https://api.spotify.com/v1//playlists/${id_playlist}`, {
+async function fetchPlaylist() {
+    const accessToken = sessionStorage.getItem('accessToken');
+    var id_playlist = document.getElementById("idAlbum").value;
+    const result = await fetch(`https://api.spotify.com/v1/playlists/${id_playlist}`, {
         method: "GET", 
         headers: { 
-            Authorization: `Bearer ${token}` 
+            Authorization: `Bearer ${accessToken}` 
         }
     });
+    const jsonResult = await result.json();
+    console.log(jsonResult);
+    //window.open(jsonResult);
+    populatePlaylist(jsonResult);
 
-    return await result.json();
 }
+
+async function populatePlaylist(profile) {
+    document.getElementById("displayPlaylist").innerText = profile.name;
+    if(profile.collaborative === false){
+        
+        document.getElementById("collaborative").innerText = "No";
+    }else{
+        document.getElementById("collaborative").innerText = "Yes";
+    }
+    if (profile.images[0]) {
+        const profileImage = new Image(200, 200);
+        profileImage.src = profile.images[0].url;
+        document.getElementById("cover").appendChild(profileImage);
+        document.getElementById("imgUrl").innerText = profile.images[0].url;
+    }
+    document.getElementById("descriptions").innerText = profile.description;
+    document.getElementById("followers").innerText = profile.followers.total;
+    document.getElementById("uri").innerText = profile.uri;
+    document.getElementById("uri").setAttribute("href", profile.external_urls.spotify);
+    document.getElementById("owner").innerText = profile.owner.display_name;
+}
+

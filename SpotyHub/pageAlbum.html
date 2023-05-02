@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang= "en">
 <head>
     <meta charset="utf-8" />
     <title>My Spotify Profile</title>
@@ -7,27 +7,31 @@
 </head>
 
 <body>
-    <h1>Display your Spotify profile data</h1>
+
 
     <section id="profile">
         <h2>Logged in as <span id="displayName"></span></h2>
         <span id="avatar"></span>
-        <ul>
+        <ul>            
             <li>User ID: <span id="id"></span></li>
-            <li>Country: <span id="country"></span></li>
-            <li>Email: <span id="email"></span></li>
-            <li>Spotify URI: <a id="uri" href="#"></a></li>
-            <li>Link: <a id="url" href="#"></a></li>
-            <li>Profile Image: <span id="imgUrl"></span></li>
+            
         </ul>
     </section>
     <section>
         <h2>Playlist</h2>
         <p>Merci de rentrer un id de playlist valable (https://open.spotify.com/playlist/id)</p>
         <input type="text" id="idAlbum" placeholder="Ex : 3xSPaq1T046JZuMrudc7yV">
-        <button onclick="AfficherText">Entrer</button>
-
-        <li></li>
+        <button onclick="fetchPlaylist()">Entrer</button>
+        <h2>Playlist <span id="displayPlaylist"></span></h2>
+<span id="cover"></span>
+<ul>
+    <li>Collaborative: <span id="collaborative"></span></li>
+	<li>Followers: <span id="followers"></span></li>
+    <li>Description: <span id="descriptions"></span></li>
+    <li>Spotify URI: <a id="uri" href="#"></a></li>
+    <li>Profile Image: <span id="imgUrl"></span></li>
+    <li>Owner: <span id="owner"></span></li>
+    <div>Titres : </div>
     </section>
 
 </body>
