@@ -1,17 +1,24 @@
-// Récupère le token d'accès à partir du stockage local
+// Select the button
+const createPlaylistButton = document.getElementById("create-playlist-button");
+// Retrieve the access token from local storage
 const accessToken = localStorage.getItem('accessToken');
-// Appelle une fonction asynchrone qui renvoie une promesse contenant les 10 meilleurs titres de l'utilisateur
+// Call async function to get the user's top 10 tracks
 const tracks = await fetchTrack(accessToken);
-// Appelle une fonction asynchrone qui renvoie une promesse contenant l'ID de l'utilisateur
-const userId = await fetchUserId(accessToken);
-// Appelle une fonction asynchrone qui renvoie une promesse contenant l'ID de la playlist nouvellement créée
-const playlistId = await createPlaylist(userId, accessToken);
-// Appelle une fonction asynchrone qui ajoute les 10 meilleurs titres à la nouvelle playlist
-await addTracksToPlaylist(playlistId, tracks.items, accessToken);
-// Met à jour l'interface utilisateur avec les 10 meilleurs titres
+// Add a click event listener to the button
+// Update the UI with the top 10 tracks
 populateIU(tracks);
-// Affiche les 10 meilleurs titres dans la console
-console.log(tracks);
+
+createPlaylistButton.addEventListener("click", async function() {
+    
+    
+    // Call async function to get the user's ID
+    const userId = await fetchUserId(accessToken);
+    // Call async function to create a new playlist and get its ID
+    const playlistId = await createPlaylist(userId, accessToken);
+    // Call async function to add the top 10 tracks to the new playlist
+    await addTracksToPlaylist(playlistId, tracks.items, accessToken);
+    
+});
 
 // Fonction pour récupérer les 10 meilleurs titres de l'utilisateur
 async function fetchTrack(token) {
