@@ -2,14 +2,24 @@
 const accessToken = localStorage.getItem('accessToken');
 
 // Fetch the top 10 artists and tracks
-const topArtists = await fetchTop(accessToken, 'artists', 'long_term');
-const topTracks = await fetchTop(accessToken, 'tracks', 'long_term');
+refreshTopArtists();
+refreshTopTracks();
 
-// Populate the UI with the fetched data
-populateIU(topArtists, 'topArtists');
-populateIU(topTracks, 'topTracks');
+// Add event listeners to the select elements
+document.getElementById("artists-time-range").addEventListener('change', refreshTopArtists);
+document.getElementById("tracks-time-range").addEventListener('change', refreshTopTracks);
 
-console.log(topArtists, topTracks);
+async function refreshTopArtists() {
+    const timeRange = document.getElementById("artists-time-range").value;
+    const topArtists = await fetchTop(accessToken, 'artists', timeRange);
+    populateIU(topArtists, 'topArtists');
+}
+
+async function refreshTopTracks() {
+    const timeRange = document.getElementById("tracks-time-range").value;
+    const topTracks = await fetchTop(accessToken, 'tracks', timeRange);
+    populateIU(topTracks, 'topTracks');
+}
 
 // Fetch top items (artists or tracks) with a limit of 10
 async function fetchTop(token, type, time_range = 'long_term') {
@@ -22,6 +32,7 @@ async function fetchTop(token, type, time_range = 'long_term') {
 // Populate the UI with the top items (artists or tracks)
 function populateIU(top, id) {
     const list = document.getElementById(id);
+    list.innerHTML = ''; // Clear the list before populating it
 
     // Check if the top object has any items
     if (top.items.length > 0) {
@@ -38,4 +49,3 @@ function populateIU(top, id) {
         list.appendChild(listItem);
     }
 }
-
