@@ -17,6 +17,8 @@ createPlaylistButton.addEventListener("click", async function() {
     const playlistId = await createPlaylist(userId, accessToken);
     // Call async function to add the top 10 tracks to the new playlist
     await addTracksToPlaylist(playlistId, tracks.items, accessToken);
+    const successMessage = document.getElementById("success-message");
+    successMessage.style.display = "block";
     
 });
 
