@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="src/script_playlist.js" type="module"></script>
+    <!-- <script src="src/script_playlist.js" type="module"></script> -->
+    <script src="src/script_playlist.js" defer></script>
     <link rel="stylesheet" type="text/css" href="src/menu.css">
 </head>
 <body>
@@ -20,7 +21,25 @@
   <ul id="track-list">
       <!-- Your top tracks will be populated here by JavaScript -->
   </ul>
+  <section>
+    <h2>Playlist</h2>
+    <p>Merci de rentrer un id de playlist valable (https://open.spotify.com/playlist/id)</p>
+    <input type="text" id="playlist-input" placeholder="Ex : 3xSPaq1T046JZuMrudc7yV">
+    <button onclick="fetchPlaylist()">Entrer</button>
+    <h2>Playlist <span id="displayPlaylist"></span></h2>
+    <span id="cover"></span>
+    <ul>
+    <li>Collaborative: <span id="collaborative"></span></li>
+    <li>Followers: <span id="followers"></span></li>
+    <li>Description: <span id="descriptions"></span></li>
+    <li>Spotify URI: <a id="uri" href="#"></a></li>
+    <li>Profile Image: <span id="imgUrl"></span></li>
+    <li>Owner: <span id="owner"></span></li>
+    <div>Titres : </div>
+    </section>
 </div>
+
+
      
   </body>
   </html>
