@@ -1,4 +1,5 @@
 const accessToken = localStorage.getItem('accessToken');
+console.log(accessToken);
 // L'API Spotify est appelée pour obtenir le profil de l'utilisateur et ses artistes les plus écoutés.
 const profile = await fetchProfile(accessToken);
 // Les données de profil et les artistes les plus écoutés sont ensuite affichés sur la page Web.
