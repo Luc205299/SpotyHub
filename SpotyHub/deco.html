@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logout</title>
+    <script>
+        function logout() {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('verifier');
+            alert("You have been logged out.");
+            // Rediriger l'utilisateur vers la page d'accueil ou de connexion
+            window.location.href = "index.html";  // Assurez-vous que "login.html" est la page vers laquelle vous voulez rediriger.
+        }
+    </script>
+</head>
+<body>
+    <button onclick="logout()">Logout</button>
+</body>
+</html>
