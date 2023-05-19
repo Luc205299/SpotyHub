@@ -12,13 +12,13 @@ document.getElementById("tracks-time-range").addEventListener('change', refreshT
 async function refreshTopArtists() {
     const timeRange = document.getElementById("artists-time-range").value;
     const topArtists = await fetchTop(accessToken, 'artists', timeRange);
-    populateIU(topArtists, 'topArtists');
+    populateUI(topArtists, 'topArtists');
 }
 
 async function refreshTopTracks() {
     const timeRange = document.getElementById("tracks-time-range").value;
     const topTracks = await fetchTop(accessToken, 'tracks', timeRange);
-    populateIU(topTracks, 'topTracks');
+    populateUI(topTracks, 'topTracks');
 }
 
 // Fetch top items (artists or tracks) with a limit of 10
@@ -30,7 +30,7 @@ async function fetchTop(token, type, time_range = 'long_term') {
 }
 
 // Populate the UI with the top items (artists or tracks)
-function populateIU(top, id) {
+function populateUI(top, id) {
     const list = document.getElementById(id);
     list.innerHTML = ''; // Clear the list before populating it
 
