@@ -4,12 +4,31 @@
     <script src="src/script_auth.js" type="module"></script>
     <meta http-equiv="refresh" content="2; URL='http://localhost:5173/accueil.html'" />
 </head>
+<style>
+    .loading {
+        font-size: 3em;
+        color: black;
+        text-align: center;
+        margin-top: 20%;
+
+        animation: myAnim 2s ease 0s 1 normal forwards;
+    }
+
+    @keyframes myAnim {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+</style>
 <body>
-    <button class="button" onclick="pageAuth()">Connexion</button>
-    </div>
-    <script>
-    function pageAuth(){
-        window.open('menu.html')
-    }</script>
+    <div class="loading">Chargement...</div>
 </body>
 </html>
