@@ -114,6 +114,8 @@ async function addTracksToPlaylist(playlistId, tracks, token) {
     });
 }
 
+
+// Fonction qui permet de recup le json d'une playlist 
 async function fetchPlaylist() {
     const Token = localStorage.getItem('accessToken');
     const id_playlist = document.getElementById("playlist-input").value;
@@ -123,12 +125,25 @@ async function fetchPlaylist() {
             Authorization: `Bearer ${Token}` 
         }
     });
+    const track = await fetch(`https://api.spotify.com/v1/playlists/${id_playlist}/tracks?limit=50`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${Token}`
+        }
+    });
+ 
+    const jsonTrack = await track.json();
     const jsonResult = await result.json();
     console.log(jsonResult);
     //window.open(jsonResult);
      await populatePlaylist(jsonResult);
+     console.log("gg");
+     console.log(jsonTrack);
+     await displayPlaylist(jsonTrack);
 
 }
+
+
 
 async function populatePlaylist(profile) {
     document.getElementById("displayPlaylist").innerText = profile.name;
@@ -149,4 +164,39 @@ async function populatePlaylist(profile) {
     document.getElementById("uri").innerText = profile.uri;
     document.getElementById("uri").setAttribute("href", profile.external_urls.spotify);
     document.getElementById("owner").innerText = profile.owner.display_name;
+
 }
+
+
+
+async function displayPlaylist(profile){
+    const trackListContainer = document.getElementById("track");
+    for(let i = 0; i<50;i++){
+
+        if ( profile.items[i]){
+            console.log("i"+i);
+            const trackElement = document.createElement("td");
+            const numTrack = document.createElement("td");
+            const element1 = document.createTextNode("\n"+(i+1) + " "); //le titre
+            const trackName = profile.items[i].track.name;
+            trackElement.innerText = trackName; //mise en texte 
+            numTrack.innerText = element1.textContent;
+
+            const flexContainer = document.createElement("tr");
+            //flexContainer.style.display = "flex";
+            flexContainer.appendChild(numTrack);
+            flexContainer.appendChild(trackElement);
+
+            trackListContainer.appendChild(flexContainer);
+        }else{
+            console.log("bye");
+        }
+
+    }
+}
+
+
+
+
+
+ 
