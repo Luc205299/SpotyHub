@@ -119,6 +119,7 @@ async function addTracksToPlaylist(playlistId, tracks, token) {
 async function fetchPlaylist() {
     const Token = localStorage.getItem('accessToken');
     const id_playlist = document.getElementById("playlist-input").value;
+    changePlaylist(id_playlist);
     const result = await fetch(`https://api.spotify.com/v1/playlists/${id_playlist}`, {
         method: "GET", 
         headers: { 
@@ -167,7 +168,10 @@ async function populatePlaylist(profile) {
 
 }
 
-
+async function changePlaylist(playlist1){
+    var iframe = document.getElementById("playlist");
+    iframe.src = `https://open.spotify.com/embed/playlist/${playlist1}?utm_source=generator`;
+}
 
 async function displayPlaylist(profile){
     const trackListContainer = document.getElementById("track");
