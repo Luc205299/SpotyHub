@@ -6,11 +6,11 @@ const accessToken = localStorage.getItem('accessToken');
 // const tracks = await fetchTrack(accessToken);
 // Add a click event listener to the button
 // Update the UI with the top 10 tracks
-// populateIU(tracks);
+// populateUI(tracks);
 
 const setup = async () => {
         const tracks = await fetchTrack(accessToken);
-        populateIU(tracks);
+        populateUI(tracks);
 
     };
 
@@ -55,7 +55,7 @@ async function fetchUserId(token) {
 }
 
 // Fonction pour mettre à jour l'interface utilisateur avec les 10 meilleurs titres
-function populateIU(tracks) {
+function populateUI(tracks) {
     // Récupère l'élément HTML avec l'ID 'track-list'
     const trackList = document.getElementById("track-list");
 
