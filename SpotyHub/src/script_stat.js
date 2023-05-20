@@ -20,16 +20,20 @@ async function fetchProfile(token) {
 
 
 // La fonction populateUI met à jour l'interface utilisateur avec les informations du profil de l'utilisateur.
-function populateUI(top, id) {
+function populateUI(top, id0 , id1) {
     
-    const list = document.getElementById(id);
+    const list = document.getElementById(id0);
+    const uri = document.getElementById(id1);
     list.innerHTML = ''; // Clear the list before populating it
 
     // Check if the top object has any items
     if (top.items.length > 0) {
         // Get the name of the first item
         const itemName = top.items[0].name;
+        const itemUri = top.items[0].uri;
+    
         list.innerText = itemName;
+        uri.innerText = itemUri.split(":")[2];
     } else {
         // If no items were found, display a message
         list.innerText = `No top ${id} found`;
@@ -40,10 +44,10 @@ function populateUI(top, id) {
 
 async function refreshTopArtists() {
     const topArtists = await fetchTop(accessToken, 'artists', "short_term");
-    populateUI(topArtists, 'topArtists');
+    populateUI(topArtists, 'topArtists', "UriTopArtist");
 }
 // Fetch top items (artists or tracks) with a limit of 10
-async function fetchTop(token, type, time_range = 'long_term') {
+async function fetchTop(token, type, time_range) {
     const result = await fetch(`https://api.spotify.com/v1/me/top/${type}?time_range=${time_range}&limit=10&offset=0`, {
         method: "GET", headers: { Authorization: `Bearer ${token}` }
     });
