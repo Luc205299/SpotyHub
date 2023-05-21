@@ -20,26 +20,30 @@ async function fetchProfile(token) {
 
 
 // La fonction populateUI met à jour l'interface utilisateur avec les informations du profil de l'utilisateur.
-function populateUI(top, id0 , id1) {
-    
+function populateUI(top, id0, id1) {
     const list = document.getElementById(id0);
     const uri = document.getElementById(id1);
+    const playlistIframe = document.getElementById("spotifyPlaylist");
+
     list.innerHTML = ''; // Clear the list before populating it
 
     // Check if the top object has any items
     if (top.items.length > 0) {
         // Get the name of the first item
         const itemName = top.items[0].name;
+        // Get the id of the top artist
         const itemUri = top.items[0].uri;
-    
+
         list.innerText = itemName;
         uri.innerText = itemUri.split(":")[2];
+        
+        // Construct the Spotify playlist URL
+        const playlistUrl = `https://open.spotify.com/embed/artist/${itemUri.split(":")[2]}?utm_source=generator`;
+        playlistIframe.setAttribute("src", playlistUrl);
     } else {
         // If no items were found, display a message
-        list.innerText = `No top ${id} found`;
+        list.innerText = `No top ${id0} found`;
     }
-    
-    
 }
 
 async function refreshTopArtists() {
@@ -53,4 +57,3 @@ async function fetchTop(token, type, time_range) {
     });
     return await result.json();
 }
-
