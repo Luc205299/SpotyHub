@@ -115,6 +115,10 @@ async function addTracksToPlaylist(playlistId, tracks, token) {
 }
 
 
+
+
+
+
 // Fonction qui permet de recup le json d'une playlist 
 async function fetchPlaylist() {
     const Token = localStorage.getItem('accessToken');
