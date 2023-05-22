@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Logout</title>
+    <title>SpotiHub</title>
+    <link rel="stylesheet" type="text/css" href="src/index.css">
     <script>
         function logout() {
             localStorage.removeItem('accessToken');
@@ -13,6 +14,14 @@
     </script>
 </head>
 <body>
-    <button onclick="logout()">Logout</button>
+    
+    <div class="container">
+        <h1 class="title">See you next time</h1>
+        <button class="button" onclick="logout()">Log out</button>
+    </div>
+    <script>
+    function pageAuth(){
+        window.open('redirect.html')
+    }</script>
 </body>
 </html>
