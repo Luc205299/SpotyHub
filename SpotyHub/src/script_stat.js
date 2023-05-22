@@ -1,10 +1,9 @@
 const accessToken = localStorage.getItem('accessToken');
 // L'API Spotify est appelée pour obtenir le profil de l'utilisateur et ses artistes les plus écoutés.
-//const profile = await fetchProfile(accessToken);
+const profile = await fetchProfile(accessToken);
 // Les données de profil et les artistes les plus écoutés sont ensuite affichés sur la page Web.
-//populateUI(profile);
+populateUI(profile);
 refreshTopArtists();
-
 
 
 
@@ -20,40 +19,52 @@ async function fetchProfile(token) {
 
 
 // La fonction populateUI met à jour l'interface utilisateur avec les informations du profil de l'utilisateur.
-function populateUI(top, id0, id1) {
-    const list = document.getElementById(id0);
-    const uri = document.getElementById(id1);
-    const playlistIframe = document.getElementById("spotifyPlaylist");
+function populateUI(profile) {
+    // Mettre à jour les éléments HTML avec les informations du profil de l'utilisateur.
+    // Les informations affichées incluent le nom d'affichage de l'utilisateur, l'image de profil, l'ID de l'utilisateur, le pays, l'e-mail, l'URI Spotify de l'utilisateur et l'URL de l'utilisateur.
+    document.getElementById("displayName").innerText = profile.display_name;
+    if (profile.images[0]) {
+        const profileImage = new Image(200, 200);
+        profileImage.src = profile.images[0].url;
+        document.getElementById("avatar").appendChild(profileImage);
+    }
 
+}
+
+
+// Fetch the top 10 artists and tracks
+
+
+async function refreshTopArtists() {
+    const topArtists = await fetchTop(accessToken, 'artists', "short_term");
+    populateUI1(topArtists, 'topArtists');
+}
+
+async function fetchTop(token, type, time_range = 'short_term') {
+    const result = await fetch(`https://api.spotify.com/v1/me/top/${type}?time_range=${time_range}&limit=1&offset=0`, {
+        method: "GET", headers: { Authorization: `Bearer ${token}` }
+    });
+    const res = await result.json();
+    return res;
+
+}
+
+// Populate the UI with the top items (artists or tracks)
+function populateUI1(top, id) {
+    const list = document.getElementById(id);
     list.innerHTML = ''; // Clear the list before populating it
 
     // Check if the top object has any items
     if (top.items.length > 0) {
         // Get the name of the first item
         const itemName = top.items[0].name;
-        // Get the id of the top artist
-        const itemUri = top.items[0].uri;
-
         list.innerText = itemName;
-        uri.innerText = itemUri.split(":")[2];
-        
-        // Construct the Spotify playlist URL
-        const playlistUrl = `https://open.spotify.com/embed/artist/${itemUri.split(":")[2]}?utm_source=generator`;
-        playlistIframe.setAttribute("src", playlistUrl);
+        const art_id = top.items[0].id;
+        var iframe = document.getElementById("artist");
+        iframe.src = `https://open.spotify.com/embed/artist/${art_id}?utm_source=generator`;
+    
     } else {
         // If no items were found, display a message
-        list.innerText = `No top ${id0} found`;
+        list.innerText = `No top ${id} found`;
     }
-}
-
-async function refreshTopArtists() {
-    const topArtists = await fetchTop(accessToken, 'artists', "short_term");
-    populateUI(topArtists, 'topArtists', "UriTopArtist");
-}
-// Fetch top items (artists or tracks) with a limit of 10
-async function fetchTop(token, type, time_range) {
-    const result = await fetch(`https://api.spotify.com/v1/me/top/${type}?time_range=${time_range}&limit=10&offset=0`, {
-        method: "GET", headers: { Authorization: `Bearer ${token}` }
-    });
-    return await result.json();
 }
