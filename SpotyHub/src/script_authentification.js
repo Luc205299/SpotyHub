@@ -1,5 +1,5 @@
 // Définir l'ID du client pour l'application Spotify
-const clientId = "d8d7799d31d84752873ad62f05a31226";
+const clientId = "d8d7799d31d84752873ad62f05a31226"; //Client ID de Tristan
 
 // Extraire le paramètre "code" de l'URL. Il s'agit du code d'autorisation fourni par Spotify pour obtenir un access_token.
 const params = new URLSearchParams(window.location.search);
