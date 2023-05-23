@@ -12,18 +12,29 @@ let tracksList = [];
 for (let i = 0; i < tokens.length; i++) {
   const element = tokens[i];
   const track = await fetchTrack(element);
+  tracksList.push(track);
+  console.log(tracksList);
   populateUI(track);
 }
 
-
-
 createPlaylistButton.addEventListener("click", async function() {
-    const userId = await fetchUserId(accessToken);
-    const playlistId = await createPlaylist(userId, accessToken);
-    await addTracksToPlaylist(playlistId, tracks.items, accessToken);
+    
+    
+    // Call async function to get the user's ID
+    const userId = await fetchUserId(accessToken); //ok
+    // Call async function to create a new playlist and get its ID
+    const playlistId = await createPlaylist(userId, accessToken); //ok
+    // Call async function to add the top 10 tracks to the new playlist
+    for (let i = 0; i < tokens.length; i++) {
+        const element = tokens[i];
+        const tracks = await fetchTrack(element);
+        await addTracksToPlaylist(playlistId, tracks.items, accessToken);
+    }
     const successMessage = document.getElementById("success-message");
     successMessage.style.display = "block";
+    
 });
+
 
 async function fetchTrack(token) {
     const result = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=10&offset=0", {
