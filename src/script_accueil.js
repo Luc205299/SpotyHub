@@ -38,7 +38,7 @@ function populateUI(profile) {
 
 
 async function refreshTopArtists() {
-    const topArtists = await fetchTop(accessToken, 'artists', "short_term");
+    const topArtists = await fetchTop(accessToken, 'artists', "long_term");
     populateUI_artist(topArtists, 'topArtists');
 }
 
