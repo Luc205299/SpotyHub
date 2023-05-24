@@ -19,9 +19,16 @@ createPlaylistButton.addEventListener("click", async function() {
     await addTracksToPlaylist(playlistId, tracks.items, accessToken);
     const successMessage = document.getElementById("success-message");
     successMessage.style.display = "block";
+    //Change the src of the iframe with the id of the new playlist and display it.
+    var iframe = document.getElementById("playlistCreate");
+    iframe.src =`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator`;
+    let div = document.getElementById("divPlay");
+    div.style.display = "block";
+
     
 });
 
+    
 // Fonction pour récupérer les 10 meilleurs titres de l'utilisateur
 async function fetchTrack(token) {
     // Envoie une requête GET à l'API Spotify pour récupérer les 10 meilleurs titres de l'utilisateur
