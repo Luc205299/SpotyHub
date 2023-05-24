@@ -10,7 +10,8 @@ const tracks = await fetchTrack(accessToken);
 // Update the UI with the top 10 tracks
 populateIU(tracks);
 
-//Function
+
+//Functions
 
 createPlaylistButton.addEventListener("click", async function() {
     
