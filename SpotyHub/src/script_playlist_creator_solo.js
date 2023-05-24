@@ -1,5 +1,7 @@
 // Select the button
 const createPlaylistButton = document.getElementById("create-playlist-button");
+//stock input value
+const playlistName = document.getElementById("name-input");
 // Retrieve the access token from local storage
 const accessToken = localStorage.getItem('accessToken');
 // Call async function to get the user's top 10 tracks
@@ -12,10 +14,11 @@ populateIU(tracks);
 
 createPlaylistButton.addEventListener("click", async function() {
     
+    const NAME = playlistName.value;
     // Call async function to get the user's ID
     const userId = await fetchUserId(accessToken);
     // Call async function to create a new playlist and get its ID
-    const playlistId = await createPlaylist(userId, accessToken);
+    const playlistId = await createPlaylist(userId, accessToken, NAME);
     // Call async function to add the top 10 tracks to the new playlist
     await addTracksToPlaylist(playlistId, tracks.items, accessToken);
     const successMessage = document.getElementById("success-message");
@@ -25,6 +28,7 @@ createPlaylistButton.addEventListener("click", async function() {
     iframe.src =`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator`;
     let div = document.getElementById("divPlay");
     div.style.display = "block";
+    console.log(NAME);
 
 });
 
@@ -78,7 +82,7 @@ function populateIU(tracks) {
 }
 
 // Fonction pour créer une nouvelle playlist pour l'utilisateur
-async function createPlaylist(userId, token) {
+async function createPlaylist(userId, token, NAME) {
     // Envoie une requête POST à l'API Spotify pour créer une nouvelle playlist
     const result = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
         method: "POST",
@@ -87,16 +91,18 @@ async function createPlaylist(userId, token) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            name: "My Top 10 Tracks by SpotyHub",
+            name: NAME,
             description: "Playlist created by SpotiyHub",
             public: true
         })
     });
-    // Convertit la réponse en JSON
+        // Convertit la réponse en JSON
     const data = await result.json();
     // Renvoie l'ID de la nouvelle playlist
     return data.id;
 }
+
+
 
 // Fonction pour ajouter des titres à une playlist
 async function addTracksToPlaylist(playlistId, tracks, token) {
