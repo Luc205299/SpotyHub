@@ -8,8 +8,9 @@ const tracks = await fetchTrack(accessToken);
 // Update the UI with the top 10 tracks
 populateIU(tracks);
 
+//Function
+
 createPlaylistButton.addEventListener("click", async function() {
-    
     
     // Call async function to get the user's ID
     const userId = await fetchUserId(accessToken);
@@ -25,7 +26,6 @@ createPlaylistButton.addEventListener("click", async function() {
     let div = document.getElementById("divPlay");
     div.style.display = "block";
 
-    
 });
 
     
@@ -40,6 +40,7 @@ async function fetchTrack(token) {
     return await result.json();
 }
 
+
 // Fonction pour récupérer l'ID de l'utilisateur
 async function fetchUserId(token) {
     // Envoie une requête GET à l'API Spotify pour récupérer le profil de l'utilisateur
@@ -52,6 +53,7 @@ async function fetchUserId(token) {
     // Renvoie l'ID de l'utilisateur
     return data.id;
 }
+
 
 // Fonction pour mettre à jour l'interface utilisateur avec les 10 meilleurs titres
 function populateIU(tracks) {
