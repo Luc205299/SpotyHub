@@ -2,6 +2,8 @@
 const createPlaylistButton = document.getElementById("create-playlist-button");
 //stock input value
 const playlistName = document.getElementById("name-input");
+//stock input value for the number of tracks
+const numberOfTracks = document.getElementById("number-input");
 // Retrieve the access token from local storage
 const accessToken = localStorage.getItem('accessToken');
 // Call async function to get the user's top 10 tracks
@@ -16,12 +18,14 @@ populateIU(tracks);
 createPlaylistButton.addEventListener("click", async function() {
     
     const NAME = playlistName.value;
-    // Call async function to get the user's ID
+    const NUMBER = numberOfTracks.value;
+    const tracks2 = await fetchTrackNumber(accessToken, NUMBER);
+    // Call async function to get the user's ID 
     const userId = await fetchUserId(accessToken);
     // Call async function to create a new playlist and get its ID
     const playlistId = await createPlaylist(userId, accessToken, NAME);
     // Call async function to add the top 10 tracks to the new playlist
-    await addTracksToPlaylist(playlistId, tracks.items, accessToken);
+    await addTracksToPlaylist(playlistId, tracks2.items, accessToken);
     const successMessage = document.getElementById("success-message");
     successMessage.style.display = "block";
     //Change the src of the iframe with the id of the new playlist and display it.
@@ -44,6 +48,17 @@ async function fetchTrack(token) {
     // Renvoie les données de la réponse sous forme d'objet JSON
     return await result.json();
 }
+
+async function fetchTrackNumber(token, number) {
+    // Envoie une requête GET à l'API Spotify pour récupérer les 10 meilleurs titres de l'utilisateur
+    const result = await fetch(`https://api.spotify.com/v1/me/top/tracks?limit=${number}&offset=0`, {
+        method: "GET", headers: { Authorization: `Bearer ${token}` }
+    });
+
+    // Renvoie les données de la réponse sous forme d'objet JSON
+    return await result.json();
+}
+
 
 
 // Fonction pour récupérer l'ID de l'utilisateur
