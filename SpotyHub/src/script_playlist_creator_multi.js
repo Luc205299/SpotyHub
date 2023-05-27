@@ -13,30 +13,45 @@ const tokens = tokenList.split(",")
 //We add the current token to the list of token
 tokens.push(accessToken);
 
+const playlistName = document.getElementById("name-input");
+const numberOfTracks = document.getElementById("number-input");
+
+
 //initialize the list of tracks
 let tracksList = [];
 
 //We get the top 10 tracks for each token
 for (let i = 0; i < tokens.length; i++) {
+
+
+    const name = fetchProfile(tokens[i]);
   const element = tokens[i];
   const track = await fetchTrack(element);
   tracksList.push(track);
   console.log(tracksList);
   populateUI(track);
+  //on ajoute une balise p pour séparer les listes de tracks
+    let p = document.createElement("p");
+    p.innerHTML = "---------------------------------------------";
+    document.getElementById("track-list").appendChild(p);
+
 
 }
 
 // Add an event listener to the button to create the playlist and add the tracks
 createPlaylistButton.addEventListener("click", async function() {
     
+    const NAME = playlistName.value;
+    const NUMBER = numberOfTracks.value;
+    const tracks2 = await fetchTrackNumber(accessToken, NUMBER);
     // store the user's Id
     const userId = await fetchUserId(accessToken);
     // Call async function to create a new playlist and get its ID
-    const playlistId = await createPlaylist(userId, accessToken); 
+    const playlistId = await createPlaylist(userId, accessToken,NAME); 
     // Call async function to add the tracks to the playlist
     for (let i = 0; i < tokens.length; i++) {
         const element = tokens[i];//store the current token
-        const tracks = await fetchTrack(element);//get the top 10 tracks for the current token
+        const tracks = await fetchTrackNumber(element, NUMBER);;//get the top 10 tracks for the current token
         await addTracksToPlaylist(playlistId, tracks.items, accessToken);//add the tracks to the playlist
     }
     const successMessage = document.getElementById("success-message");
@@ -85,23 +100,23 @@ function populateUI(tracks) {
 
 
 // Call async function to create a new playlist and get its ID
-async function createPlaylist(userId, token) {
+async function createPlaylist(userId, token, NAME) {
+    // Envoie une requête POST à l'API Spotify pour créer une nouvelle playlist
     const result = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
         method: "POST",
         headers: { 
             Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json' // We need to specify that we're sending JSON
+            'Content-Type': 'application/json'
         },
-        // We need to stringify the object to send it to the server
         body: JSON.stringify({
-            name: "My Top 10 Tracks by SpotyHub",
+            name: NAME,
             description: "Playlist created by SpotiyHub",
             public: true
         })
     });
+        // Convertit la réponse en JSON
     const data = await result.json();
-    console.log("hi ! ");
-    console.log(data);
+    // Renvoie l'ID de la nouvelle playlist
     return data.id;
 }
 
@@ -121,7 +136,15 @@ async function addTracksToPlaylist(playlistId, tracks, token) {
 }
 
 
+async function fetchTrackNumber(token, number) {
+    // Envoie une requête GET à l'API Spotify pour récupérer les 10 meilleurs titres de l'utilisateur
+    const result = await fetch(`https://api.spotify.com/v1/me/top/tracks?limit=${number}&offset=0`, {
+        method: "GET", headers: { Authorization: `Bearer ${token}` }
+    });
 
+    // Renvoie les données de la réponse sous forme d'objet JSON
+    return await result.json();
+}
 
 
 //affichage playlist
@@ -207,6 +230,30 @@ async function displayPlaylist(profile){
         }
 
     }
+}
+
+//Affichage Nom 
+
+async function fetchProfile(token) {
+    const result = await fetch("https://api.spotify.com/v1/me", {
+        method: "GET", headers: { Authorization: `Bearer ${token}` }
+    });
+
+    // Renvoyer le profil de l'utilisateur sous forme de JSON.
+    let res = await result.json();
+    console.log(res);
+    populateName(res);
+    return res;
+}
+
+
+// La fonction populateUI met à jour l'interface utilisateur avec les informations du profil de l'utilisateur.
+function populateName(profile) {
+    let p = document.createElement("p");
+    console.log(profile.display_name);
+    p.innerText = profile.display_name;
+    document.getElementById("track-list").appendChild(p);
+
 }
 
 

@@ -14,17 +14,21 @@
         <a href="logout.html">Log out</a>
       </div>
 
-<div class="main-content">
-  <h1>Create a playlist</h1>
-  <button id="create-playlist-button">Create Playlist</button>
-  <p id="success-message" style="display: none;">Playlist created successfully!</p>
-  <ul id="track-list">
-      <!-- Your top tracks will be populated here by JavaScript -->
-  </ul>
-  <div style="display: none;" id="divPlay">
-    <iframe id="playlistCreate" style="border-radius:12px" src="" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-  </div>
-</div>
+      <div class="main-content">
+        <h1>Create a playlist</h1>
+        <button id="create-playlist-button">Create Playlist</button>
+        <input type="text" id="name-input" placeholder="Name">
+        <input type="text" id="number-input" placeholder="Number of track">
+      
+        <p id="success-message" style="display: none;">Playlist created successfully!</p>
+        <ul id="track-list">
+        
+            <!-- Your top tracks will be populated here by JavaScript -->
+        </ul>
+        <div style="display: none;" id="divPlay">
+        <iframe id="playlistCreate" style="border-radius:12px" src="" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
      
   </body>
   </html>
