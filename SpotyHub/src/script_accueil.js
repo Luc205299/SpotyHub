@@ -28,6 +28,9 @@ function populateUI(profile) {
     if (profile.images[0]) {
         const profileImage = new Image(200, 200);
         profileImage.src = profile.images[0].url;
+        profileImage.height = "40";
+        profileImage.width = "40";
+
         document.getElementById("avatar").appendChild(profileImage);
     }
 
