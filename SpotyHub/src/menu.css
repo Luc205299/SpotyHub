@@ -185,50 +185,27 @@ select {
 /*---------------------------------------------*/
 
 button {
-  background-color: #1db954;
-  color: white;
+  background-color: #1DB954;
+  font-family: Arial, sans-serif;
   border: none;
+  color: white;
+  padding: 15px 32px;
+  display: inline-block;
+  font-size: 40px;
   cursor: pointer;
   border-radius: 50px;
-  font-family: Arial, sans-serif;
-  padding: 15px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  font-size: 40px;
   font-weight: bold;
 }
 
-input[type="text"],
-button {
-  display: block;
-  margin-bottom: 10px;
+#playlist_hub {
+  display: grid; /* Utilisation d'une grille pour le positionnement */
+  place-items: center; /* Centrage horizontal et vertical */
+  height: 100vh; /* Ajout de cette ligne pour occuper toute la hauteur de la fenêtre */
+}
+
+.button-group {
   padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 16px;
-  height : 10%
+  background-color: #333533c5;
+  border-radius: 20px;
+
 }
-
-
-
-
-#messages {
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 10px;
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-#messages p {
-  margin: 0;
-  padding: 5px 0;
-}
-
-#info-text {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.2em;
-}
-
