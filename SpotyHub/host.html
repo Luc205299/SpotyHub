@@ -3,61 +3,25 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: white;
-      margin: 0;
-      padding: 20px;
-    }
-
-    #messages {
-      background-color: #282828;
-      padding: 10px;
-      border-radius: 10px;
-      margin-top: 20px;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-
-    #messages p {
-      margin: 0;
-      padding: 5px 0;
-    }
-
-    #info-text {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 1.2em;
-    }
-
-    button {
-      background-color: #1db954;
-      color: white;
-      border: none;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin-top: 10px;
-      cursor: pointer;
-      border-radius: 50px;
-      display: block;
-      margin: 0 auto;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="src/menu.css">
 </head>
 
 <body>
-  <div id="info-text">
-    Voici les utilisateurs connectés à votre session. Vos amis peuvent utiliser votre adresse mail pour se connecter à votre session.
+  <div class="sidebar">
+    <img src="logo.png" alt="Logo" class="logo">
+    <h1 class="header-title">SpotiHub</h1>
+    <a href="accueil.html">Home Page</a>
+    <a href="playlist_hub.html">Playlist Creator</a>
+    <a href="Statistique.html">Statistics</a>
+    <a href="logout.html">Log out</a>
+  </div>
+  <div>
+    <p id="info-text">Voici les utilisateurs connectés à votre session. Vos amis peuvent utiliser votre adresse mail pour se connecter à votre session.</p>
+    <div id="messages"></div>
+    <button onclick="redirectToPage()">Next</button>
   </div>
 
-  <div id="messages"></div>
-
-  <button onclick="redirectToPage()">Next</button>
+  
 
   <script>
     const token = localStorage.getItem('accessToken');
