@@ -80,9 +80,9 @@ tr:nth-child(even){
 
 
 .sidebar a {
-    padding: 8px 8px 8px 32px;
+    padding: 20px 20px 20px 32px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 30px;
     color: #818181;
     display: block;
     transition: 0.3s;
@@ -98,9 +98,14 @@ tr:nth-child(even){
 }
 
 .logo {
-    width: 50%;
+    width: 70%;
     display: block;
     margin: 0 auto 20px auto;
+}
+
+.header-title {
+  font-size: 50px;
+  margin-bottom: 50px;
 }
 
 @media only screen and (max-width: 980px) {
@@ -177,13 +182,21 @@ select {
   border-radius: 50%;
   margin-left: 10px;
 }
+/*---------------------------------------------*/
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #121212;
+button {
+  background-color: #1db954;
   color: white;
-  margin: 0;
-  padding: 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  font-family: Arial, sans-serif;
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 input[type="text"],
@@ -197,13 +210,8 @@ button {
   height : 10%
 }
 
-button {
-  background-color: #1db954;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 50px;
-}
+
+
 
 #messages {
   margin-top: 20px;
