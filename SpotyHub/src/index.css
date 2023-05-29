@@ -1,12 +1,12 @@
 body {
-    background: #191414;  /* Couleur de fond similaire à Spotify */
+    background: #191414;
     font-family: Arial, sans-serif;
     color: #FFFFFF;
     margin: 0;
     padding: 0;
     height: 100vh;
     display: flex;
-    align-items: center;
+    
     justify-content: center;
 }
 
@@ -20,7 +20,7 @@ body {
 }
 
 .button {
-    background-color: #1DB954;  /* Couleur de bouton similaire à Spotify */
+    background-color: #1DB954;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -31,4 +31,8 @@ body {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 50px;
+}
+
+h2{
+    color: #1DB954;
 }
