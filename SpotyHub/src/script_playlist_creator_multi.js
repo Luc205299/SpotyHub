@@ -179,6 +179,7 @@ async function fetchPlaylist() {
 
 
 
+//Display information of the playlist
 async function populatePlaylist(profile) {
     document.getElementById("displayPlaylist").innerText = profile.name;
     if(profile.collaborative === false){
