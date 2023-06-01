@@ -57,13 +57,14 @@ tr:nth-child(even){
 /* SideBar ----------------------------------------------------------------------------------------------------------------------------*/
 
 .sidebar {
+    display : block;
     width: 20%;
-    height: 100vh;
     z-index: 1;
     background-color: #111;
     overflow-x: hidden;
     padding-top: 20px;
     padding-right: 1%;
+    padding-bottom : 12%;
 
 }
 
@@ -239,7 +240,6 @@ button {
   border-radius: 20px;
   color: #1DB954;
   font-size: 45px;
-  font-family: Arial, sans-serif;
   font-weight: bold;
   top: 11%;
   left: 36%;
@@ -257,7 +257,8 @@ button {
 }
 /*SEND---------------------------------------------------------------------------------------------------------------------------------*/
 
-#id {
+
+input{
   background-color: #191414;
   color: #fff;
   border-width :2px;
@@ -268,6 +269,9 @@ button {
   width: 250px;
   font-size: 16px;
   text-align : center;
+}
+
+#id {
   display: inline-block;
   position: absolute;
   top: 45%;
@@ -314,15 +318,90 @@ button {
   padding: 10px;
   border-radius: 20px;
   text-align: center;
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  left: 54%;
   font-size : 20px;
+  margin-top : 23%;
+  margin-left : 33%;
 }
 
 #membre{
   font-size: 25px;
 }
 
+/*Playlist-Solo----------------------------------------------------------------------*/
+
+#track-list{
+  list-style: none;
+  background-color: #191414;
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px;
+  width: 250px;
+  font-size: 16px;
+  text-align : center;
+  margin-top: 20%;
+  margin-left : 15%;
+}
+
+
+#name-input{
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 66%;
+}
+
+#number-input{
+  display: inline-block;
+  position: absolute;
+  top: 68%;
+  left: 66%;
+}
+
+#create-playlist-button{
+  display: inline-block;
+  position: absolute;
+  top: 80%;
+  left: 65.4%;
+}
+
+#titre_playlist_solo{
+  background-color: #111;
+  border-radius: 20px;
+  color: #1DB954;
+  font-size: 45px;
+  font-weight: bold;
+  padding : 25px;
+  display: inline-block;
+  position: absolute;
+  top: 12%;
+  left: 30%;
+}
+
+#name_playlist_solo{
+  display: inline-block;
+  position: absolute;
+  top: 37%;
+  left: 63%;
+} 
+
+#number_playlist_solo{
+  display: inline-block;
+  position: absolute;
+  top: 55%;
+  left: 63%;
+}
+
+#success-message {
+  display: inline-block;
+  position: absolute;
+  top: 90%;
+  left: 59%;
+  font-size: 20px;
+}
+
+#divPlay{
+  margin-top : 53%;
+  margin-left : 5.2%;
+  width : 33%;
+}
 
