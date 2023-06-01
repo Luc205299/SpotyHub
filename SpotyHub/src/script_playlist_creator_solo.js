@@ -8,12 +8,48 @@ const numberOfTracks = document.getElementById("number-input");
 const accessToken = localStorage.getItem('accessToken');
 // Call async function to get the user's top 10 tracks
 const tracks = await fetchTrack(accessToken);
+const profile = await fetchProfile(accessToken);
+// Les données de profil 
 // Add a click event listener to the button
 // Update the UI with the top 10 tracks
 populateIU(tracks);
+populateUI(profile);
+
 
 
 //Functions
+
+// La fonction fetchProfile envoie une requête GET à Spotify pour obtenir le profil de l'utilisateur.
+async function fetchProfile(token) {
+    const result = await fetch("https://api.spotify.com/v1/me", {
+        method: "GET", headers: { Authorization: `Bearer ${token}` }
+    });
+
+    // Renvoyer le profil de l'utilisateur sous forme de JSON.
+    return await result.json();
+}
+
+
+// La fonction populateUI met à jour l'interface utilisateur avec les informations du profil de l'utilisateur.
+function populateUI(profile) {
+    // Mettre à jour les éléments HTML avec les informations du profil de l'utilisateur.
+    // Les informations affichées incluent le nom d'affichage de l'utilisateur, l'image de profil, l'ID de l'utilisateur, le pays, l'e-mail, l'URI Spotify de l'utilisateur et l'URL de l'utilisateur.
+    document.getElementById("displayName").innerText = profile.display_name;
+    localStorage.setItem('username', profile.display_name);
+    localStorage.setItem('email', profile.email);
+    if (profile.images[0]) {
+        const profileImage = new Image(200, 200);
+        profileImage.src = profile.images[0].url;
+        profileImage.height = "40";
+        profileImage.width = "40";
+
+        document.getElementById("avatar").appendChild(profileImage);
+    }
+
+}
+
+
+
 
 createPlaylistButton.addEventListener("click", async function() {
     
@@ -41,7 +77,7 @@ createPlaylistButton.addEventListener("click", async function() {
 // Fonction pour récupérer les 10 meilleurs titres de l'utilisateur
 async function fetchTrack(token) {
     // Envoie une requête GET à l'API Spotify pour récupérer les 10 meilleurs titres de l'utilisateur
-    const result = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=10&offset=0", {
+    const result = await fetch("https://api.spotify.com/v1/me/top/tracks?limit=50&offset=0", {
         method: "GET", headers: { Authorization: `Bearer ${token}` }
     });
 
