@@ -292,4 +292,37 @@ button {
   left: 54.4%;
 }
 
+/*HOST-----------------------------------------------------------------------------------------------------------------------------*/
+
+#titre_host {
+  display: inline-block;
+  position: absolute;
+  top: 15%;
+  left: 35%;
+}
+
+#next{
+  display: inline-block;
+  position: absolute;
+  top: 32%;
+  left: 57%;
+}
+
+#messages {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  text-align: center;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  font-size : 20px;
+}
+
+#membre{
+  font-size: 25px;
+}
+
 
