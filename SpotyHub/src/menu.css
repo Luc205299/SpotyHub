@@ -243,7 +243,7 @@ button {
   font-weight: bold;
   top: 11%;
   left: 36%;
-  padding : 25px;
+  padding : 20px;
 }
 
 #titre_hub1{
@@ -327,7 +327,7 @@ input{
   font-size: 25px;
 }
 
-/*Playlist-Solo----------------------------------------------------------------------*/
+/*Playlist-Solo----------------------------------------------------------------------------------------------------------------------*/
 
 #track-list{
   list-style: none;
@@ -370,7 +370,7 @@ input{
   color: #1DB954;
   font-size: 45px;
   font-weight: bold;
-  padding : 25px;
+  padding : 20px;
   display: inline-block;
   position: absolute;
   top: 12%;
@@ -400,8 +400,23 @@ input{
 }
 
 #divPlay{
-  margin-top : 53%;
+  margin-top : 51%;
   margin-left : 5.2%;
   width : 33%;
+}
+
+/*Playlist-Multi------------------------------------------------------------------------------------------------------*/
+
+#titre_playlist_multi{
+  background-color: #111;
+  border-radius: 20px;
+  color: #1DB954;
+  font-size: 40px;
+  font-weight: bold;
+  padding : 20px;
+  display: inline-block;
+  position: absolute;
+  top: 7%;
+  left: 22.5%;
 }
 
