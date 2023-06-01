@@ -30,3 +30,4 @@ function populateUI(profile) {
 
         document.getElementById("avatar").appendChild(profileImage);
     }
+}

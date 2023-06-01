@@ -1,7 +1,7 @@
 
 body {
     font-family: "Lato", sans-serif;
-    background-color: #191414;
+    background-color: #282828;
     color: white;
     margin: 0;
     display: flex;
@@ -19,17 +19,6 @@ h2 {
     font-size: 2em;
     margin-bottom: 3%;
     margin-bottom: 20px;
-}
-
-
-.top-lists {
-    display: flex;
-    justify-content: space-around;
-    width: 80%;
-}
-
-.top-artists, .top-tracks {
-    flex-basis: 40%;
 }
 
 
@@ -82,7 +71,7 @@ tr:nth-child(even){
 .sidebar a {
     padding: 20px 20px 20px 32px;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 20px;
     color: #818181;
     display: block;
     transition: 0.3s;
@@ -95,18 +84,20 @@ tr:nth-child(even){
 .main-content {
     flex-grow: 1;
     padding: 10px;
+    margin-left : 20px;
 }
 
 .logo {
     width: 70%;
     display: block;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 0 auto;
 }
 
 .header-title {
-  font-size: 50px;
-  margin-bottom: 50px;
+  font-size: 35px;
+  margin-bottom: 30px;
 }
+
 
 @media only screen and (max-width: 980px) {
     .sidebar {
@@ -128,11 +119,23 @@ tr:nth-child(even){
     }
   }
 
-/*Bouton Select ---------------------------------------------------------------------------------------------------------------------- */
+/*Top tracks---Bouton Select ---------------------------------------------------------------------------------------------------------------------- */
+  
+  .top-lists {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin-left : 7%;
+    margin-top : 12%;
+  }
 
-select {
+  .top-artists, .top-tracks {
+    flex-basis: 40%;
+  }
+
+  select {
     appearance: none;
-    background-color: #191414;
+    background-color: #282828;;
     border: none;
     border-bottom: 2px solid #ffffff;
     padding: 5px;
@@ -141,6 +144,7 @@ select {
     cursor: pointer;
     outline: none;
     transition: border-color 0.3s ease-in-out;
+    
   }
   
   select:hover {
@@ -151,7 +155,9 @@ select {
   .top-tracks select {
     width: 200px;
     margin-bottom: 10px;
+    
   }
+  
 
 /*  Profile -------------------------------------------------------------------------------------------------------------------------*/
 
@@ -159,10 +165,11 @@ select {
   position: fixed;
   top: 0;
   right: 0;
+  margin-right : 20px;
 }
 
 #displayName {
-  padding : 10px;
+  padding : 20px;
 }
 
 .profile-image {
@@ -182,7 +189,7 @@ select {
   border-radius: 50%;
   margin-left: 10px;
 }
-/*---------------------------------------------*/
+/*-Playlist_hub--------------------------------------------*/
 
 button {
   background-color: #1DB954;
@@ -191,10 +198,11 @@ button {
   color: white;
   padding: 15px 32px;
   display: inline-block;
-  font-size: 40px;
+  font-size: 30px;
   cursor: pointer;
   border-radius: 50px;
-  font-weight: bold;
+  margin-left : 20px;
+  margin-right : 20px;
 }
 
 #playlist_hub {
@@ -204,8 +212,52 @@ button {
 }
 
 .button-group {
-  padding: 10px;
-  background-color: #333533c5;
-  border-radius: 20px;
-
+  text-align : center;
+  display: inline-block;
+  position: absolute;
 }
+
+#button-group1 {
+  top: 75%;
+  left: 55%;
+}
+
+#button-group2 {
+  top: 50%;
+  left: 50%;
+}
+
+.titre_hub{
+  text-align : center;
+  display: inline-block;
+  position: absolute;
+  font-size : 30px;
+}
+
+#titre_hub0{
+  background-color: #111;
+  border-radius: 20px;
+  color: #1DB954;
+  font-size: 45px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  top: 11%;
+  left: 36%;
+  padding : 25px;
+}
+
+#titre_hub1{
+  top: 33%;
+  left: 42%;
+}
+
+#titre_hub2{
+  top: 63%;
+  left: 45%;
+}
+
+
+
+
+
+
