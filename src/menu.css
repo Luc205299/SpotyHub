@@ -451,6 +451,6 @@ input{
   font-size: 30px;
   padding : 20px;
 }
-#topArtists{
+.nom_artists{
   color: #1DB954;
 }
