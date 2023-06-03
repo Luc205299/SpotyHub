@@ -2,65 +2,25 @@
 <html>
 
 <head>
+  <title>Spotihub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: white;
-      margin: 0;
-      padding: 20px;
-    }
-
-    input[type="text"],
-    button {
-      display: block;
-      margin-bottom: 10px;
-      padding: 10px;
-      width: 100%;
-      box-sizing: border-box;
-      font-size: 16px;
-    }
-
-    button {
-      background-color: #1db954;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 50px;
-    }
-
-    #messages {
-      margin-top: 20px;
-      background-color: #282828;
-      padding: 10px;
-      border-radius: 10px;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-
-    #messages p {
-      margin: 0;
-      padding: 5px 0;
-    }
-
-    #info-text {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 1.2em;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="src/menu.css">
 </head>
 
 <body>
-  <div id="info-text">
-    Entrez le mail de votre ami pour rejoindre sa session.
+  <div class="sidebar">
+    <a href="accueil.html"><img src="logo.png" alt="Logo" class="logo"></a>
+    <h1 class="header-title">SpotiHub</h1>
+    <a href="accueil.html">Home Page</a>
+    <a href="playlist_hub.html">Playlist Creator</a>
+    <a href="Statistique.html">Statistics</a>
+    <a href="logout.html">Log out</a>
   </div>
-
-  <input id="id" type="text" placeholder="Enter ID">
-  <button onclick="send()">Send</button>
-
-  <div id="messages"></div>
+  <div>
+    <p class = "titre_hub" id="titre_send">Enter your friend's email to join his session :</p>
+    <input id="id"  type="text" placeholder="Enter ID">
+    <button id ="send" onclick="send()">Send</button>
+  </div>
 
   <script>
     const token = localStorage.getItem('accessToken');

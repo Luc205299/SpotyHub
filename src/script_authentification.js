@@ -15,6 +15,9 @@ if (!code) {
     const accessToken = await getAccessToken(clientId, code);
     // L'access_token est ensuite stocké dans le local storage pour une utilisation ultérieure.
     localStorage.setItem('accessToken', accessToken);
+    // L'access_token est également renvoyé par la fonction. 
+    
+    console.log(accessToken);
 }
 
 // La fonction redirectToAuthCodeFlow redirige l'utilisateur vers la page d'autorisation de Spotify.

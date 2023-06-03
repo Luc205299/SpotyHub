@@ -2,7 +2,8 @@
 <html>
 
 <head>
-   <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- pour le responsive --> 
+  <title>Spotihub</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="src/menu.css">
   <script src="src/script_accueil.js" type="module"></script>
 </head>
@@ -11,24 +12,17 @@
 <body>
   
   <div class="sidebar">
-    <img src="logo.png" alt="Logo" class="logo">
-    <h1 class="header-title">SpotiHub</h1>
+    <a href="accueil.html"><img src="logo.png" alt="Logo" class="logo"></a>
+    <h2 class="header-title">SpotiHub</h2>
     <a href="accueil.html">Home Page</a>
+    <a href="playlist_hub.html">Playlist Creator</a>
     <a href="Statistique.html">Statistics</a>
-    <a href="playlist.html">Playlist Creator</a>
     <a href="logout.html">Log out</a>
-    <a href="playlist_hub.html">Playlist Creator V2</a>
   </div>
 
   <div class="main-content">
-    <h2>Contenu principal</h2>
-    <p>Bienvenue sur Spotihub.</p>
-    <h2>Display your Spotify profile data</h2>
-
-    <section id="profile">
-      <h3>Logged in as <span id="displayName"></span></h3>
-      <span id="avatar"></span>
-    </section>
+    <h3 id = "profile"><span id="avatar" class ="profile-image"></span><span id="displayName"></span></h3>
+    <h2>Create a playlist whith your friends !</h2>
     <p>Your favorite artist of the moment: <span id="topArtists"></span></p>
     <iframe id="artist" style="border-radius:12px" src="" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
   </div>
